@@ -116,8 +116,9 @@
       <div class="footer__submit">
         <button
           @click.prevent="onOrderClick"
-          :disabled="!totalPrice"
+          :disabled="!totalPrice || !isAuthenticated"
           class="button"
+          :class="{ 'button--disabled': !totalPrice || !isAuthenticated }"
           data-test="cart-order-button"
         >
           Оформить заказ
@@ -131,12 +132,10 @@
 import { mapGetters, mapActions, mapState } from "vuex";
 import PizzasList from "@/modules/cart/components/PizzasList";
 import Misc from "@/modules/cart/components/Misc";
-import { auth } from "@/middlewares";
 
 export default {
   name: "Cart",
   layout: "AppLayoutMain",
-  middlewares: { auth: auth },
   components: {
     PizzasList,
     Misc,
@@ -160,12 +159,15 @@ export default {
       addresses: (state) => state.addresses,
     }),
     ...mapState("Auth", {
+      isAuthenticated: (state) => state.isAuthenticated,
       user: (state) => state.user,
     }),
   },
   async created() {
     await this.fetchMiscData();
-    await this.fetchAddresses();
+    if (this.isAuthenticated) {
+      await this.fetchAddresses();
+    }
   },
   methods: {
     ...mapActions("Cart", ["fetchMiscData", "makeOrder", "resetCart"]),
