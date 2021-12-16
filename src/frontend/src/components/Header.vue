@@ -18,7 +18,7 @@
         ><span>Войти</span></router-link
       >
       <template v-if="isAuthenticated">
-        <router-link to="/user-data">
+        <router-link to="/profile">
           <picture>
             <img :src="user.avatar" :alt="user.name" width="32" height="32" />
           </picture>

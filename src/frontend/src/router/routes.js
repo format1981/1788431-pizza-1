@@ -21,7 +21,7 @@ export default [
     meta: { layout: "AppLayoutUser", middlewares: [auth] },
   },
   {
-    path: "/user-data",
+    path: "/profile",
     name: "UserData",
     component: () => import("@/views/UserData.vue"),
     meta: { layout: "AppLayoutUser", middlewares: [auth] },
