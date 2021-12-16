@@ -27,7 +27,7 @@ export default [
     meta: { layout: "AppLayoutUser", middlewares: [auth] },
   },
   {
-    path: "/sign-in",
+    path: "/login",
     name: "SignIn",
     component: () => import("@/views/SignIn.vue"),
     meta: { layout: "AppLayoutEmpty", middlewares: [isLoggedIn] },
