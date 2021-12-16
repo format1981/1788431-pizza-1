@@ -12,7 +12,7 @@ export default [
     path: "/cart",
     name: "Cart",
     component: () => import("@/views/Cart.vue"),
-    meta: { layout: "AppLayoutMain", middlewares: [auth] },
+    meta: { layout: "AppLayoutMain" },
   },
   {
     path: "/orders",
