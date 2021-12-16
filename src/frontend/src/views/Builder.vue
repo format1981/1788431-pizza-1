@@ -80,13 +80,13 @@ export default {
     },
   },
   async created() {
+    await this.fetchData();
     if (this.pizzaIdToEdit) {
       const pizzaData = this.getPizzaDataById(this.pizzaIdToEdit);
       await this.loadDataFromCart(pizzaData);
     } else {
       this.resetValues();
     }
-    await this.fetchData();
   },
   computed: {
     ...mapGetters("Builder", ["getPizzaName", "orderAllowed", "pizzaData"]),
