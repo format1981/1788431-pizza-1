@@ -14,15 +14,24 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Thanx",
+  computed: {
+    ...mapState("Auth", {
+      isAuthenticated: (state) => state.isAuthenticated,
+    }),
+  },
   methods: {
     ...mapActions("App", ["hideThanx"]),
     async close() {
       this.hideThanx();
-      await this.$router.push({ name: "Orders" });
+      if (this.isAuthenticated) {
+        await this.$router.push({ name: "Orders" });
+      } else {
+        await this.$router.push({ name: "Builder" });
+      }
     },
   },
 };

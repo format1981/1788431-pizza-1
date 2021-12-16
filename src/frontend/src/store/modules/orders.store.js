@@ -18,10 +18,9 @@ export default {
   },
 
   actions: {
-    async create({ dispatch }, { userId, phone, address, pizzas, misc }) {
+    async create(context, { userId, phone, address, pizzas, misc }) {
       const orderData = { userId, phone, address, pizzas, misc };
       await this.$api.orders.post(orderData);
-      await dispatch("fetch");
     },
     async fetch({ commit, rootGetters }) {
       const orders = await this.$api.orders.query();

@@ -116,9 +116,9 @@
       <div class="footer__submit">
         <button
           @click.prevent="onOrderClick"
-          :disabled="!totalPrice || !isAuthenticated"
+          :disabled="!totalPrice"
           class="button"
-          :class="{ 'button--disabled': !totalPrice || !isAuthenticated }"
+          :class="{ 'button--disabled': !totalPrice }"
           data-test="cart-order-button"
         >
           Оформить заказ
@@ -183,8 +183,10 @@ export default {
         address = this.getAddressById(this.address);
       }
 
+      const userId = this.user ? this.user.id : null;
+
       await this.createOrder({
-        userId: this.user.id,
+        userId: userId,
         phone: this.phone,
         address: address,
         pizzas: this.pizzasForOrder,
