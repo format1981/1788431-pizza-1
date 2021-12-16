@@ -66,7 +66,6 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Builder",
-  layout: "AppLayoutMain",
   components: {
     DoughSelector,
     SizeSelector,
